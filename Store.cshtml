@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ITI_GProject.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Store Products</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-header">
+                @Html.DisplayFor(modelItem => item.Prodname)
+            </div>
+            <div class="card-body">
+                <div class="card-image">
+                    <img height="200px" width="180px" src="@item.image" alt="Product Image">
+                </div>
+                <div class="card-description">
+                    @Html.DisplayFor(modelItem => item.Proddescription)
+                </div>
+                <div class="card-price">
+                    Price: @Html.DisplayFor(modelItem => item.Price)
+                </div>
+                <div class="card-seller">
+                    Seller: @Html.DisplayFor(modelItem => item.Seller.Sellerid)
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="@Url.Action("Edit", new { id = item.Productid })">Edit</a> |
+                <a href="@Url.Action("Details", new { id = item.Productid })">Details</a> |
+                <a href="@Url.Action("Delete", new { id = item.Productid })">Delete</a>
+            </div>
+        </div>
+    }
+</div>
